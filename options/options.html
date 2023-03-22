@@ -2,11 +2,36 @@
 <html>
 
 <head>
-    <title>Di$ect Extension Options</title>
+    <title>Di$ect Preferences Page</title>
 </head>
 
 <body>
-    <h1> Hello World </h1>
+    <h1>Di$ect Preferences Page</h1>
+    <form action="">
+        <label for="options-causes">What causes do you want to hear about?</label>
+        <ul>
+            <li><input type="checkbox" id="options-causes" name="options-causes">Labor rights</li>
+            <li><input type="checkbox" id="options-causes" name="options-causes">Vegan/Cruelty-free</li>
+            <li><input type="checkbox" id="options-causes" name="options-causes">Sustainability</li>
+            <li><input type="checkbox" id="options-causes" name="options-causes">Carbon neutral</li>
+            <li><input type="checkbox" id="options-causes" name="options-causes">Black-Owned</li>
+            <li><input type="checkbox" id="options-causes" name="options-causes">Supports LGBT+</li>
+        </ul>
+
+        <label for="options-units-system">Change unit system (currently using: Metric)</label>
+        <ul>
+            <li><input type="checkbox" id="options-units-system" name="options-units-system">English system (lbs)</li>
+            <li><input type="checkbox" id="options-units-system" name="options-units-system">Metric system (kgs)</li>
+        </ul>
+
+        <label for="options-colors">Color Scheme (currently using: Default)</label>
+        <ul>
+            <li><input type="checkbox" id="options-colors" name="options-colors">Default</li>
+            <li><input type="checkbox" id="options-colors" name="options-colors">High Contrast</li>
+        </ul>
+        <input type="submit" value="Save current preferences"> <input type="reset" value="Restore default options">
+    </form>
+
 </body>
 
 </html>

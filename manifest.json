@@ -9,6 +9,7 @@
             "js": [
                 "scripts/content-script.js"
             ],
+            "matches": ["https://nike.com/*"]
         }
     ],
     "options_page": "options/options.html",
