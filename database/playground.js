@@ -15,15 +15,34 @@ db.sales.drop();
 // Insert a few documents into the sales collection.
 db.charities.insertMany([
   { '_id': 1, 'category': 'Labor Rights', 'name': 'Clean Clothes Campaign', 'main_website_url': 'https://cleanclothes.org/', 'donation_url': 'https://cleanclothes.org/donate', 'short_description': 'The Clean Clothes Campaign is a global network of over 235 organizations in more than 45 countries. It aims to improve the working conditions of the garment and sportswear industries by connecting various organizations, including grassroots unions, trade unions, and feminist organizations. The campaign is worker-centered and utilizes a horizontal operational structure to address local and global problems. They offer direct solidarity support to workers fighting against specific worker rights violations and co-develop global campaigns to achieve systemic goals. The campaign educates and mobilizes consumers, lobbies companies and governments, and cooperates with other labor rights campaigns. All members, partners, and associates are dedicated to empowering workers to ensure their fundamental rights are respected.' },
-  { '_id': 2, 'item': 'jkl', 'price': 20, 'quantity': 1, 'date': new Date('2014-03-01T09:00:00Z') },
-  { '_id': 3, 'item': 'xyz', 'price': 5, 'quantity': 10, 'date': new Date('2014-03-15T09:00:00Z') },
-  { '_id': 4, 'item': 'xyz', 'price': 5, 'quantity':  20, 'date': new Date('2014-04-04T11:21:39.736Z') },
-  { '_id': 5, 'item': 'abc', 'price': 10, 'quantity': 10, 'date': new Date('2014-04-04T21:23:13.331Z') },
-  { '_id': 6, 'item': 'def', 'price': 7.5, 'quantity': 5, 'date': new Date('2015-06-04T05:08:13Z') },
-  { '_id': 7, 'item': 'def', 'price': 7.5, 'quantity': 10, 'date': new Date('2015-09-10T08:43:00Z') },
-  { '_id': 8, 'item': 'abc', 'price': 10, 'quantity': 5, 'date': new Date('2016-02-06T20:20:13Z') },
+  { '_id': 2, 'category': 'Labor Rights', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 3, 'category': 'Labor Rights', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 4, 'category': 'Labor Rights', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 5, 'category': 'Labor Rights', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 6, 'category': 'Labor Rights', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 7, 'category': 'Carbon Emissions', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 8, 'category': 'Carbon Emissions', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 9, 'category': 'Carbon Emissions', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 10, 'category': 'Environmentally Friendly', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 11, 'category': 'Environmentally Friendly', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 12, 'category': 'Environmentally Friendly', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 13, 'category': 'Environmentally Friendly', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 14, 'category': 'Animal Cruelty', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 15, 'category': 'Animal Cruelty', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 16, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 17, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 18, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 19, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 20, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 21, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 22, 'category': 'LGBTQ', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 23, 'category': 'Black Owned', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 24, 'category': 'Black Owned', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 25, 'category': 'Fashion Sustainability', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
+  { '_id': 26, 'category': 'American Owned', 'name': '', 'main_website_url': '', 'donation_url': '', 'short_description': '' },
 ]);
 
+/*
 // Run a find command to view items sold on April 4th, 2014.
 db.sales.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });
 
@@ -37,3 +56,4 @@ const aggregation = [
 // Use toArray() to exhaust the cursor to return the whole result set.
 // You can use hasNext()/next() to iterate through the cursor page by page.
 db.sales.aggregate(aggregation);
+*/
