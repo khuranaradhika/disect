@@ -1,21 +1,10 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Di$ect",
     "description": "Balancing profits and principles.",
     "version": "1.0",
     "author": "@di$ectTeam",
-    "content_scripts": [
-        {
-            "js": [
-                "scripts/content-script.js"
-            ],
-        }
-    ],
     "options_page": "options/options.html",
-    "browser_action": {
-        "default_icon": "icons/disect_icon.png",
-        "default_popup": "popup/popup.html"
-    },
     "permissions": [
         "activeTab",
         "storage"
