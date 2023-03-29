@@ -1,7 +1,7 @@
 ### Database Setup ###
 The following steps ensure a connection to our MongoDB database provided you can access the appopriate credentials.
 1. Create 'default.json' in 'disect/server/config'. Copy and paste the URI to our MongoDB database as follows.
-'''
+'''json
 {
   "mongoURI": <URI>
 }
