@@ -3,7 +3,7 @@ The following steps ensure a connection to our MongoDB database provided you can
 1. Create `default.json` in `disect/server/config`. Copy and paste the URI to our MongoDB database as follows.
 ```json
 {
-  "mongoURI": <URI>
+  "mongoURI": "<URI>"
 }
 ```
 Our URI is private for security reasons. You can request access by emailing one of the administrators.
