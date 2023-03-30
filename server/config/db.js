@@ -12,7 +12,7 @@ const connectDB = async () => {
             useUnifiedTopology: true
         });
         /* Uncommment to see charity being pulled from database
-        let C = await Charity.findOne()
+        let C = await Charity.findOne({"category": "Environmentally Friendly"})
         console.log("First charity found in DB: " + C.name)
         */
         console.log('MongoDB Connected...');
