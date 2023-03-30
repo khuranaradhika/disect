@@ -14,7 +14,7 @@ Our URI is private for security reasons. You can request access by emailing one 
 ### API Confirmation ###
 After starting our express server on your local machine using the `npm run start` script, you can check to see if our API is accessible using an http client. For example,
   1. Run `npm run start`. 
-  2. Run `curl http://localhost:5000/api/charities/Environmentall Friendly`. You should something similar to the following output:
+  2. Run `curl http://localhost:5000/api/charities/Environmentally Friendly`. You should something similar to the following output:
   ```
   TODO
   ```
