@@ -1,5 +1,5 @@
 // Example backend value
-const  = 42;
+const ethic-rater-rating-id = 42;
 
 // Example function to determine color based on backend value
 function getColor(value) {
