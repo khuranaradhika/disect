@@ -56,13 +56,14 @@ Carb_emit = {
 async function myFunction2() {
     const response = await fetch("http://localhost:5000/api/charities/LGBTQ");
     const charities = await response.json()
-    console.log(charities);
+    console.log(charities)
     if(!response.ok){
-      throw new Error("FUCK");
-      document.getElementById("charity_name").innerHTML = "Site link";
+      throw new Error(response.error);
+      document.getElementById("charity_name").innerHTML = response.error;
     }
     if(document.getElementById("c1").checked){
-      document.getElementById("charity_name").innerHTML = Carb_emit[document.getElementById("c1").value]["name"];
+      document.getElementById("charity_name").innerHTML = charities[0].name;
+//      document.getElementById("charity_name").innerHTML = Carb_emit[document.getElementById("c1").value]["name"];
       document.getElementById("charity_link").innerHTML = "Site link";
       document.getElementById("charity_link").href = Carb_emit[document.getElementById("c1").value]["link"];
       document.getElementById("charity_donate_link").innerHTML = "Donation link";
