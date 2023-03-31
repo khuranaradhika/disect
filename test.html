@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Display Charity Description</h1>
+
+
+  <p>Please select your a cause:</p>
+  <input type="radio" id="c1" name="fav_language" value="cause1">
+  <label for="c1">cause1</label><br>
+  <input type="radio" id="c2" name="fav_language" value="cause2">
+  <label for="c2">cause2</label><br>
+  <input type="radio" id="c3" name="fav_language" value="cause3">
+  <label for="c3">cause3</label>
+
+  <br>  
+
+
+<button type="module" onclick="myFunction2()">Click me</button>
+<p id="charity_name"></p>
+<!-- <p id="charity_link"></p> -->
+<a id="charity_link"></a> <br>
+<a id="charity_donate_link"></a><br>
+<!-- <p id="charity_donate_link"></p> -->
+<p id="charity_description"></p>
+
+
+<script>
+CATF = {
+  "name" : "Clear Air Task Force",
+  "link" : "https://www.catf.us/",
+  "donate_link" : "https://donate.catf.us/page/39127/donate/1",
+  "description" : "Clean Air Task Force vision is to meet the world’s rising energy demand in a way that is financially, socially, and environmentally sustainable. Their goal is to push the technology and policy changes needed to achieve a zero-emissions, high-energy planet at an affordable cost."
+}
+
+C80 = {
+  "name" : "Carbon180",
+  "link" : "https://carbon180.org/",
+  "donate_link" : "https://carbon180.org/donate",
+  "description" : "Carbon180 is a new breed of climate NGO dedicated to bringing together the people, resources, and vision to realize a carbon-removing world. Their vision is to eliminate legacy carbon emissions and create a livable climate in which current and future generations can thrive. They aim to design and champion equitable, science-based policies that bring carbon removal solutions to gigaton scale."
+}
+
+EveGre = {
+"name" : "Evergreen",
+"link" : "https://www.evergreenaction.com/",
+"donate_link" : "https://secure.actblue.com/donate/evergreenaction?refcode=alertbar",
+"description" : "Evergreen is leading the fight to put bold climate action at the top of America's agenda, implement an all-out mobilization to defeat climate change and create millions of good union jobs in a just and thriving clean energy economy."
+}
+
+Carb_emit = {
+  "cause1":CATF,
+  "cause2":C80,
+  "cause3":EveGre
+};
+
+async function myFunction2() {
+    const response = await fetch("http://localhost:5000/api/charities/LGBTQ");
+    const charities = await response.json()
+    console.log(charities);
+    if(!response.ok){
+      throw new Error("FUCK");
+      document.getElementById("charity_name").innerHTML = "Site link";
+    }
+    if(document.getElementById("c1").checked){
+      document.getElementById("charity_name").innerHTML = Carb_emit[document.getElementById("c1").value]["name"];
+      document.getElementById("charity_link").innerHTML = "Site link";
+      document.getElementById("charity_link").href = Carb_emit[document.getElementById("c1").value]["link"];
+      document.getElementById("charity_donate_link").innerHTML = "Donation link";
+      document.getElementById("charity_donate_link").href = Carb_emit[document.getElementById("c1").value]["donate_link"];
+      document.getElementById("charity_description").innerHTML = Carb_emit[document.getElementById("c1").value]["description"];
+    }
+    else if (document.getElementById("c2").checked){
+      document.getElementById("charity_name").innerHTML = Carb_emit[document.getElementById("c2").value]["name"];
+      document.getElementById("charity_link").innerHTML = "Site link";
+      document.getElementById("charity_link").href = Carb_emit[document.getElementById("c2").value]["link"];
+      document.getElementById("charity_donate_link").innerHTML = "Donation link";
+      document.getElementById("charity_donate_link").href = Carb_emit[document.getElementById("c2").value]["donate_link"];
+      document.getElementById("charity_description").innerHTML = Carb_emit[document.getElementById("c2").value]["description"];
+    }
+    else{
+      document.getElementById("charity_name").innerHTML = Carb_emit[document.getElementById("c3").value]["name"];
+      document.getElementById("charity_link").innerHTML = "Site link";
+      document.getElementById("charity_link").href = Carb_emit[document.getElementById("c3").value]["link"];
+      document.getElementById("charity_donate_link").innerHTML = "Donation link";
+      document.getElementById("charity_donate_link").href = Carb_emit[document.getElementById("c3").value]["donate_link"];
+      document.getElementById("charity_description").innerHTML = Carb_emit[document.getElementById("c3").value]["description"];
+    }
+}
+
+</script>
+</body>
+</html>
