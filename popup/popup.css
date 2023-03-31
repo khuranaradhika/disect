@@ -11,10 +11,11 @@ a {
 	color: darkslategray;
 }
 
-p {
+h2 {
 	text-align: left;
 	margin: 0px;
 	padding-bottom: 5px;
+	color: black;
 }
 
 .popup-product-info {
@@ -23,8 +24,11 @@ p {
 	padding-left: 5px;
 	padding-right: 5px;
 	text-align: right;
+}
 
-/*	border: solid black 1px;*/
+.maintab-display {
+	width: auto;
+	height: auto;
 }
 
 .maintab-left {
@@ -32,8 +36,6 @@ p {
 	width: 36%;
 	height: 100%;
 	border-right: solid black 1px;
-
-/*	border: solid red 1px;*/
 }
 
 .maintab-right {
@@ -41,18 +43,15 @@ p {
 	width: 62%;
 	height: 100%;
 	padding-top: 10px;
-
-/*	border: solid blue 1px;*/
 }
 
 .ethic-rater-circle {
-	height: 105px;
-	width: 105px;
+	height: 110px;
+	width: 110px;
 	border-radius: 60px;
 	text-align: center;
 	vertical-align: center;
 	margin-bottom: 5px;
-
 	border: solid black 1px;
 }
 
@@ -79,14 +78,12 @@ p {
 .co2-units-display {
 	height: 20%;
 	width: auto;
-	margin-bottom: 10px;
 	border-radius: 5px;
 	text-align: center;
 	vertical-align: center;
 	color: black;
 	font-size: 32pt;
 	font-weight: bold;
-
 	border: solid black 1px;
 }
 
@@ -97,4 +94,49 @@ p {
 	font-size: 12pt;
 
 /*	border: solid black 1px;*/
+}
+
+/* tab buttons referenced from w3schools */
+.tab {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	width: 50%;
+	float: left;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;	
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	border-right: solid 1px;
+	outline: none;
+	cursor: pointer;
+	padding: 10px 12px;
+	text-align: center;
+	margin-bottom: 2px;
+
+	/* depends on theme */
+	border-bottom-color: black;
+	border-left-color: black;
+	border-right-color: black;
+}
+
+/* Create an active/current tablink class */
+.tab-active {
+	background-color: inherit;
+	border-top: solid 1px;
+	border-top-color: white;
+}
+
+.tab-inactive {
+	border-top: solid 1px;
+	border-top-color: black;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #aaa;
 }

@@ -7,15 +7,15 @@
 </head>
 
 <body>
-    <div class="popup-product-info">
-        <p>Data for <b>Product Name (Brand)</b></p>
+    <div class="popup-product-info" id="popup-product-info-id">
+        <h2>Data for <b>Product Name (Brand)</b></h2>
         <a style="padding-right: 5px" href="" target="_blank">product-brand.com</a>
     </div>
 
-    <div>
+    <div class="maintab-display">
         <div class="maintab-left">
             <div class="ethic-rater-circle">
-                <div class="ethic-rater-rating">8<span class="ethic-rater-rating-small">/10</span></div>
+                <div class="ethic-rater-rating" id="ethic-rater-rating-id">8<span class="ethic-rater-rating-small">/10</span></div>
                 Good
             </div>
             <ul class="maintab-left-list">
@@ -28,13 +28,10 @@
                 <li>- No Code of Conduct</li>
             </ul>
             
-            
         </div>
         <div class="maintab-right">
-            <div class="co2-units-display">
-                10,000 kg
-            </div>
-            <div class="co2-facts">
+            <div class="co2-units-display" id="co2-units-display-id">70,000 kgs</div>
+            <div class="co2-facts" id="co2-facts-id">
                 <p><i>estimated CO2 emissions from shipping</i></p>
                 <p><i>equivalent to emissions produced by driving for X hours!</i></p>
             </div>
@@ -43,6 +40,11 @@
                 <a style="float: right" href="../options/options.html" target="_blank">Not the right units? Adjust settings</a>
             </div>
         </div>
+    </div>
+
+    <div class="tab">
+        <button class="tab-active"><img style="height: 18px" src="../icons/graph-icon.png" alt="graphtab"></button>
+        <a href="charities.html"><button class="tab-inactive"><img style="height: 18px" src="../icons/donate-icon.png" alt="donatetab"></button></a>
     </div>
 </body>
 
