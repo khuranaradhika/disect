@@ -9,13 +9,23 @@
             "js": [
                 "scripts/content-script.js"
             ],
-            "matches": ["https://nike.com/*"]
+            "matches": [
+                "https://nike.com/*"
+            ]
         }
     ],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": "icons/disect_icon.png"
+    },
     "options_page": "options/options.html",
     "permissions": [
         "activeTab",
         "storage",
-        "geolocation"
+        "geolocation",
+        "tabs"
     ]
 }
