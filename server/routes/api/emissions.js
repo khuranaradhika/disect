@@ -10,6 +10,25 @@ router.get("/shipto/:location&:company", async (req, res) => {
     // Get location and company
     location = req.params.location
     company = req.params.company
+    console.log("HELLO");
+
+    // Hard-coded bs because dataloy a hoe; comment out when we need to actually test and an API key is available 
+    if(company === "nike"){
+      res.json({"emissions": 81.333333333});
+    }
+    else if(company === "nike"){
+      res.json({"emissions": 77.83});
+    }
+    else if(company === "amazon"){
+      res.json({"emissions": 99.1});
+    }
+    else{
+      res.json({"emissions": 0});
+    }
+    return;
+
+
+
     // Get emissions of shipping to the given location from the company
     // Split location into lat and long
     let tmp = location.split(",")

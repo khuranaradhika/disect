@@ -17,13 +17,12 @@ const CarbonEmissions  = class {
     async get_emissions() {
         const url = `https://distances.dataloy.com/route/route?point=${this.dest_lat},${this.dest_long}&point=${this.user_lat},${this.user_long}&avoid_eca_factor=1&avoid_hra_factor=1&avoid_ice_factor=5`;
         console.log(url);
-        const headers = {"X-API-Key": "YutCetLhgb2vzMWvW7EGa6HAV19bYiKl1Gyooaus"}
+        const headers = {"X-API-Key": "eo0p05jnva991OFl3UpWA63pl6qQ9kXv2J1W8cGi"}
         const requestOptions = {
             method: "GET",
             headers,
             redirect: "follow",
         };
-        return 100;
         const response = await axios.get(url, requestOptions)
         if (response.status !== 200) {
             console.log(response.data);
