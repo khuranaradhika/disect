@@ -22,12 +22,13 @@ router.get("/shipto/:location&:company", async (req, res) => {
     }
     facilities = C.getFacilities()
     expected_emissions = 0;
-    for(var i = 0;i<facilities.length;i++){
+    // Only use three facilities for now to minimize strain on dataloy distances api
+    for(var i = 0;i<Math.min(3, facilities.length);i++){
         // Compute emissions for shipping from each facility
         EmissionsCalculator = new CarbonEmissions(lat, long, facilities[i].latitude, facilities[i].longitude);
         expected_emissions += await EmissionsCalculator.get_emissions();
     }
-    expected_emissions/=facilities.length
+    expected_emissions/=Math.min(3, facilities.length);
     // return expected emissions as json 
     res.json({"emissions": expected_emissions});
   } catch (err) {
