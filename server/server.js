@@ -11,6 +11,7 @@ app.use(express.json({ extend: false }));
 app.get('/', (req, res) => res.send('API Running'));
 //Define Route
 app.use('/api/charities', require('./routes/api/charities'));
+app.use('/api/emissions', require('./routes/api/emissions'));
 // Check if the slack channel is workingfsdsdfsdkhfajksdfhjklashfajklsd
 
 const PORT = process.env.PORT || 5000;

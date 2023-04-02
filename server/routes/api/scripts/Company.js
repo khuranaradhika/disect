@@ -1,17 +1,17 @@
 const clone = (items) => items.map(item => Array.isArray(item) ? clone(item) : item);
-export class Company{
+const Company = class{
     constructor(name, facilities) {
         this.name = name
         this.facilities = clone(facilities) 
     }
-    getFactories(company_name){
+    getFacilities(company_name){
         /*
         @param company_name - name of a company
         @returns a list of Factories by location that manufacture products for the company;
                  if the company is not in the Open Supply Hub directory or no factories are known,
                  an empty list is returned 
         */
-       return clone(this.facilities)
+       return clone(this.facilities);
     }
 
     expectedPackageMileage(location){
@@ -31,3 +31,4 @@ export class Company{
         */
     }
 }
+module.exports = Company;

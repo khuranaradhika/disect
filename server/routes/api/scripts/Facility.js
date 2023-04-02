@@ -1,4 +1,4 @@
-export class Facility{
+const Facility = class {
     constructor(details){
         this.address = details.address
         this.latitude = details.lat
@@ -6,3 +6,4 @@ export class Facility{
         this.name = details.name
     }
 }
+module.exports = Facility;

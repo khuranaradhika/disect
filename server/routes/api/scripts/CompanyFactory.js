@@ -1,10 +1,8 @@
-import {Company} from "Company.js"
-import {Facility} from "Facility.js"
+const Company = require("./Company")
+const Facility = require("./Facility");
+const fs = require("fs");
 
-
-export class CompanyFactory {
-    static facilities = undefined; 
-
+const CompanyFactory = class {
     static async getCompany(company_name){
         /*
         @param company_name - name of a company
@@ -14,14 +12,20 @@ export class CompanyFactory {
                  Otherwise, returns undefined.
         */
         // TODO: Binary search to check if the given company is in our directory (currently just a linear search)
-        if(facilities == undefined){
-            facilities = await fetch(open("../../../../oshub_data/facilities.json"))
+        if(this.facilities === undefined){
+            this.facilities = JSON.parse(fs.readFileSync("../oshub_data/facilities.json", "utf8"));
         }
-        if(!facilities.has(company_name.toLowerCase())){ 
-            return undefined
+        if(!(company_name.toLowerCase() in this.facilities)){ 
+            return undefined;
         }
-        return Company(
-            company_name.toLowerCase(),
-            [Facility(i) for i in self.__facilities[company_name.lower()]])
+
+        var companys_facilities = []
+        for(var i = 0;i<this.facilities[company_name.toLowerCase()].length;i++){
+            companys_facilities.push(new Facility(this.facilities[company_name.toLowerCase()][i]));
+        }
+        return new Company(company_name.toLowerCase(), companys_facilities);
+
         }
     }
+CompanyFactory.facilities = undefined;
+module.exports = CompanyFactory;
