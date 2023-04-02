@@ -23,6 +23,7 @@ const CarbonEmissions  = class {
             headers,
             redirect: "follow",
         };
+        return 100;
         const response = await axios.get(url, requestOptions)
         if (response.status !== 200) {
             console.log(response.data);

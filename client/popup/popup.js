@@ -8,6 +8,13 @@ function getColor(value) {
     return 'green';
   }
 }
+function getEmissions(){
+  fetch("http://localhost:5000/api/emissions/shipto/1,1&xyr").then((data) => {
+    console.log("HELLO");
+    console.log(data);
+  })
+}
+
 window.onload = function() {
   // Get the content of the element and convert it to a number
   const myElement = document.getElementById('ethic-rater-rating-id') ;
@@ -23,6 +30,7 @@ window.onload = function() {
   // Set the background color of the element
   element.style.backgroundColor = color;
 
-  document.getElementById("co2-units-display-id").innerHTML = 4;
+  // document.getElementById("co2-units-display-id").innerHTML = 4;
+  getEmissions();
 
 }
