@@ -1,4 +1,6 @@
 const axios = require('axios/dist/node/axios.cjs'); 
+const emissions_reduction_factor = 100000;
+const c02_emissions_per_nautical_mile = 8131;
 const CarbonEmissions  = class {
     constructor(dest_lat, dest_long, user_lat, user_long, additional_factories = "") {
         this.dest_lat = dest_lat;
@@ -21,20 +23,15 @@ const CarbonEmissions  = class {
             headers,
             redirect: "follow",
         };
-
         const response = await axios.get(url, requestOptions)
-        if (!response.ok) {
-            console.log(response.status);
-            console.log(response.statusText);
-            console.log(response.headers);
-            console.log(response.request);
-            console.log(data);
-            throw new Error(`HTTP error! ${Object.keys(response)}`);
+        if (response.status !== 200) {
+            console.log(response.data);
+            throw new Error(`HTTP error! ${response.status}: ${response.statusText}`);
         }
-        const data = response.json()
+        const data = response.data
         const distanceValue = data.paths[0].distance;
         const co2 = (distanceValue * 8131).toFixed(2);
-        return co2;
+        return co2/emissions_reduction_factor;
     }
 }
 module.exports = CarbonEmissions;

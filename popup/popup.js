@@ -7,6 +7,7 @@ let userLong = -1;
 const destinationLat = 39.9166666666667;
 const destinationLong = 116.4;
 
+
 // Get user's current location when the extension is first opened
 navigator.geolocation.getCurrentPosition(function (pos) {
     const crd = pos.coords;
