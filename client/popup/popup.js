@@ -36,6 +36,22 @@ function getRemark(value) {
   }
 }
 
+function getCurrentUrl(callback) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        var url = tabs[0].url;
+        callback(url);
+    });
+}
+
+function getEmissions(user_lat, user_long, company){
+  fetch(`http://localhost:5000/api/emissions/shipto/${user_lat},${user_long}&${company}`).then((response) => {
+    if (!response.ok) {
+       throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  }).then((data)=>{document.getElementById("co2-units-display-id").textContent = `${data.emissions.toFixed(2)} kg(s)`});
+}
+
 window.onload = function() {
   // Get numbers for display
   const ethicalityRating = 8;
@@ -58,5 +74,16 @@ window.onload = function() {
 
   // Add a fun fact... grab from backend eventually
   document.getElementById('funfact-id').innerHTML = 'X';
-
+  // document.getElementById("co2-units-display-id").innerHTML = 4;
+  navigator.geolocation.getCurrentPosition(function (pos) {
+  const crd = pos.coords;
+  userLat = crd.latitude;
+  userLong = crd.longitude;
+  chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    let url = tabs[0].url;
+    console.log(url)
+    getEmissions(userLat, userLong, url.split('.')[1]);
+    // use `url` here inside the callback because it's asynchronous!
+  });
+});
 }
