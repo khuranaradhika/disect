@@ -52,7 +52,6 @@ h2 {
 	text-align: center;
 	vertical-align: center;
 	margin-bottom: 5px;
-	border: solid black 1px;
 }
 
 .ethic-rater-rating {
@@ -84,7 +83,7 @@ h2 {
 	color: black;
 	font-size: 32pt;
 	font-weight: bold;
-	border: solid black 1px;
+	background: beige;
 }
 
 .co2-facts {
