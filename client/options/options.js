@@ -10,6 +10,7 @@ function initPreferences(){
     }
    }
 }
+
 function getPreferences(){
     /*
     @modifies DOM
@@ -31,12 +32,13 @@ function getPreferences(){
    }
 }
 
-function savePreference(checkbox){
+function savePreference(e){
     /*
     @param checkbox - one of the checkboxes on the options page
     @modifies localStorage
     @effects if checkbox.checked == true, sets key for checkbox.textContent to true in localStorage; false otherwise
     */
+   const checkbox = e.target
    if(checkbox.checked){
     localStorage.setItem(checkbox.parentNode.textContent, "T");
    }
@@ -56,4 +58,10 @@ function restoreDefaultOptions(){
 window.onload = () => {
     initPreferences();
     getPreferences();
+    // Add event listener for every checkbox
+   const checkboxes = document.getElementsByTagName("li");
+   for(let i = 0;i<checkboxes.length;i++){
+    checkboxes[i].childNodes[0].addEventListener('input', savePreference)
+   }
+
 }
