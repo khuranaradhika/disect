@@ -4,8 +4,6 @@
 <head>
     <title>Di$ect Preferences Page</title>
     <link rel="stylesheet" href="./options.css">
-    <link rel="stylesheet" href="../css/darkmode.css">
-    <link rel="icon" href="../icons/disect_icon.png">
 </head>
 
 <body>
@@ -23,16 +21,16 @@
 
         <label for="options-units-system">Change unit system (currently using: Metric)</label>
         <ul class="no-bullets">
-            <li><input type="radio" id="options-units-system" name="options-units-system">English system (lbs)</li>
-            <li><input type="radio" id="options-units-system" name="options-units-system">Metric system (kgs)</li>
+            <li><input type="checkbox" id="options-units-system" name="options-units-system">English system (lbs)</li>
+            <li><input type="checkbox" id="options-units-system" name="options-units-system">Metric system (kgs)</li>
         </ul>
 
-        <label for="options-colors">Color Scheme (currently using: Dark Mode)</label>
+        <label for="options-colors">Color Scheme (currently using: Default)</label>
         <ul class="no-bullets">
-            <li><input type="radio" id="options-colors" name="options-colors">Light Mode</li>
-            <li><input type="radio" id="options-colors" name="options-colors">Dark Mode</li>
+            <li><input type="checkbox" id="options-colors" name="options-colors">Default</li>
+            <li><input type="checkbox" id="options-colors" name="options-colors">High Contrast</li>
         </ul>
-        <input class="btn" type="submit" value="Save current preferences"> <input class="btn" type="reset" value="Restore default options">
+        <input type="submit" value="Save current preferences"> <input type="reset" value="Restore default options">
     </form>
 
 </body>

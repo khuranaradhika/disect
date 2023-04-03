@@ -1,0 +1,142 @@
+body {
+	width: 400px;
+	height: 280px;
+	padding: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666;
+}
+
+a {
+	font-size: 8pt;
+	color: darkslategray;
+}
+
+h2 {
+	text-align: left;
+	margin: 0px;
+	padding-bottom: 5px;
+	color: black;
+}
+
+.popup-product-info {
+	font-size: 14pt;
+	color: black;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: right;
+}
+
+.maintab-display {
+	width: auto;
+	height: auto;
+}
+
+.maintab-left {
+	float: left;
+	width: 36%;
+	height: 100%;
+	border-right: solid black 1px;
+}
+
+.maintab-right {
+	float: right;
+	width: 62%;
+	height: 100%;
+	padding-top: 10px;
+}
+
+.ethic-rater-circle {
+	height: 110px;
+	width: 110px;
+	border-radius: 60px;
+	text-align: center;
+	vertical-align: center;
+	margin-bottom: 5px;
+	border: solid black 1px;
+}
+
+.ethic-rater-rating {
+	font-size: 56pt;
+	font-weight: bold;
+	color: black;
+	padding-left: 5px;
+	padding-top: 5px;
+	line-height: 1em;
+}
+
+.ethic-rater-rating-small {
+	font-size: 12pt;
+	line-height: 1em;
+	color: #666;
+}
+
+.maintab-left-list {
+	list-style: none;
+	padding-left: 0px;
+}
+
+.co2-units-display {
+	height: 20%;
+	width: auto;
+	border-radius: 5px;
+	text-align: center;
+	vertical-align: center;
+	color: black;
+	font-size: 32pt;
+	font-weight: bold;
+	border: solid black 1px;
+}
+
+.co2-facts {
+	height: 40%;
+	width: auto;
+	padding: 5px;
+	font-size: 12pt;
+
+/*	border: solid black 1px;*/
+}
+
+/* tab buttons referenced from w3schools */
+.tab {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+	width: 50%;
+	float: left;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;	
+	border-left: solid 1px;
+	border-bottom: solid 1px;
+	border-right: solid 1px;
+	outline: none;
+	cursor: pointer;
+	padding: 10px 12px;
+	text-align: center;
+	margin-bottom: 2px;
+
+	/* depends on theme */
+	border-bottom-color: black;
+	border-left-color: black;
+	border-right-color: black;
+}
+
+/* Create an active/current tablink class */
+.tab-active {
+	background-color: inherit;
+	border-top: solid 1px;
+	border-top-color: white;
+}
+
+.tab-inactive {
+	border-top: solid 1px;
+	border-top-color: black;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #aaa;
+}

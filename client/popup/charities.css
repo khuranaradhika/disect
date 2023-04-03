@@ -1,0 +1,51 @@
+body {
+	width: 400px;
+	height: auto;
+	padding: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666;
+}
+
+h2 {
+	text-align: left;
+	margin: 0px;
+	padding-bottom: 5px;
+	color: black;
+}
+
+h3 {
+	color: black;
+}
+
+.scrollbox {
+	width: 90%;
+	height: 250px;
+	overflow: auto;
+	border: solid #bbb 1px;
+	padding: 5px 8px;
+	margin: 3px;
+	margin-bottom: 8px;
+}
+
+.charity-entry {
+	width: auto;
+	border-radius: 8px;
+	border: solid black 1px;
+	padding: 3px;
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+.buttons button {
+	margin-right: 15px;
+	border: solid black 1px;
+	font-size: 8pt;
+}
+
+.donate {
+	background-color: lightgoldenrodyellow;
+}
+
+.learn-more {
+	background-color: cornflowerblue;
+}
