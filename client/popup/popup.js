@@ -61,7 +61,44 @@ async function getEmissions(user_lat, user_long, company) {
   return data.emissions;
 }
 
+// /* This function tries to execute a search on goodonyou, but it seems like only the header and footer of the page can be read idk why.
+//     If you open https://directory.goodonyou.eco/search/newbalance?genders=2%2C3%2C1&rGreat=on&rGood=on&rStart=on&rBad=on&rPoor=on
+//     it pulls up the search page for goodonyou and my plan was to take the first brand name to pass into 
+//     https://directory.goodonyou.eco/brand/${brand}
+// */
+// function getBrand(brand) {
+//   const goy_search_url = `https://directory.goodonyou.eco/search/${brand}?genders=2%2C3%2C1&rGreat=on&rGood=on&rStart=on&rBad=on&rPoor=on`;
+//   console.log(goy_search_url);
+
+//   const checkForRating = (html) => {
+//     console.log("Checking for rating element...");
+//     const rating = html.querySelector("#brand-rating");
+//     if (rating) {
+//       console.log("Rating found:", rating.textContent);
+//     } else {
+//       console.log("Rating not found, waiting...");
+//       // This is the problem -> The instance of goodonyou never fully loads no matter how long you wait
+//       console.log(html);
+//       setTimeout(() => checkForRating(html), 1000);
+//     }
+//   };
+
+//   fetch(goy_search_url)
+//     .then(response => response.text())
+//     .then(data => {
+//       console.log("Fetch completed, parsing HTML...");
+//       const parser = new DOMParser();
+//       const html = parser.parseFromString(data, "text/html");
+//       console.log(html); // Log the parsed HTML for debugging
+//       setTimeout(() => checkForRating(html), 1000);
+//     })
+//     .catch(error => console.error(error));
+// }
+
+
+
 function getEthicality(brand) {
+  getBrand(brand);
   //TODO: make brands format based on contributors.json
   const good_on_you_url = `https://directory.goodonyou.eco/brand/${brand}`;
   console.log(good_on_you_url);
