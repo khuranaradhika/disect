@@ -61,81 +61,91 @@ async function getEmissions(user_lat, user_long, company) {
   return data.emissions;
 }
 
-// /* This function tries to execute a search on goodonyou, but it seems like only the header and footer of the page can be read idk why.
-//     If you open https://directory.goodonyou.eco/search/newbalance?genders=2%2C3%2C1&rGreat=on&rGood=on&rStart=on&rBad=on&rPoor=on
-//     it pulls up the search page for goodonyou and my plan was to take the first brand name to pass into 
-//     https://directory.goodonyou.eco/brand/${brand}
-// */
-// function getBrand(brand) {
-//   const goy_search_url = `https://directory.goodonyou.eco/search/${brand}?genders=2%2C3%2C1&rGreat=on&rGood=on&rStart=on&rBad=on&rPoor=on`;
-//   console.log(goy_search_url);
-
-//   const checkForRating = (html) => {
-//     console.log("Checking for rating element...");
-//     const rating = html.querySelector("#brand-rating");
-//     if (rating) {
-//       console.log("Rating found:", rating.textContent);
-//     } else {
-//       console.log("Rating not found, waiting...");
-//       // This is the problem -> The instance of goodonyou never fully loads no matter how long you wait
-//       console.log(html);
-//       setTimeout(() => checkForRating(html), 1000);
-//     }
-//   };
-
-//   fetch(goy_search_url)
-//     .then(response => response.text())
-//     .then(data => {
-//       console.log("Fetch completed, parsing HTML...");
-//       const parser = new DOMParser();
-//       const html = parser.parseFromString(data, "text/html");
-//       console.log(html); // Log the parsed HTML for debugging
-//       setTimeout(() => checkForRating(html), 1000);
-//     })
-//     .catch(error => console.error(error));
-// }
-
 
 
 function getEthicality(brand) {
-  getBrand(brand);
-  //TODO: make brands format based on contributors.json
-  const good_on_you_url = `https://directory.goodonyou.eco/brand/${brand}`;
-  console.log(good_on_you_url);
-  fetch(good_on_you_url)
-    .then(response => response.text())
-    .then(data => {
-      const parser = new DOMParser();
-      const html = parser.parseFromString(data, "text/html");
-      const element = html.querySelector("#__NEXT_DATA__");
-      if (element) {
-        const jsonData = JSON.parse(element.textContent);
-        const brandData = jsonData.props.pageProps.brand;
-        const laborRating = brandData.labourRating;
-        const environmentRating = brandData.environmentRating;
-        const animalRating = brandData.animalRating;
+  const hyphenCombinations = [];
 
-        // // These values could be useful 
-        // const positiveReview = brandData.positiveText; // Positive review of brand
-        // const negativeReview = brandData.negativeText; // Negative review of brand
-        // const description = brandData.ethicalInfo1 + " " + brandData.ethicalInfo2; // Brand's description from goodonyou
+  // Add the brand name without hyphens as the first combination
+  hyphenCombinations.push(brand);
 
-        // Set the Ethicality Score
-        const ethicallityScore = ((animalRating + laborRating + environmentRating) / 6).toFixed(0);
-        console.log(ethicallityScore);
-        document.getElementById('ethic-rater-rating-id').innerHTML = ethicallityScore;
-        // Set the background color of the element
-        const circleColor = getColorEthic(ethicallityScore);
-        const circleElement = document.getElementById('ethic-rater-circle-id');
-        circleElement.style.backgroundColor = circleColor;
-        // Set the remark
-        const remark = getRemark(ethicallityScore);
-        document.getElementById('ethic-rater-remarks-id').innerHTML = remark;
-      } else {
-        console.log("Element with ID '__NEXT_DATA__' not found");
-      }
-    })
-    .catch(error => console.error(error));
+  // Generate combinations with hyphens
+  for (let i = 1; i < brand.length; i++) {
+    hyphenCombinations.push(`${brand.slice(0, i)}-${brand.slice(i)}`);
+  }
+
+  // Generate combinations with two or more hyphens
+  for (let hyphenCount = 2; hyphenCount < brand.length; hyphenCount++) {
+    for (let i = 1; i < brand.length - hyphenCount + 1; i++) {
+      const combination = `${brand.slice(0, i)}-${brand.slice(i, i + hyphenCount - 1)}-${brand.slice(i + hyphenCount - 1)}`;
+      hyphenCombinations.push(combination);
+    }
+  }
+
+  // Try each combination until a valid URL is found
+  let index = 0;
+
+  function tryCombination() {
+    if (index >= hyphenCombinations.length) {
+      console.log(`No valid URL found for brand '${brand}'`);
+      return;
+    }
+
+    const good_on_you_url = `https://directory.goodonyou.eco/brand/${hyphenCombinations[index]}`;
+    console.log(`Trying URL: ${good_on_you_url}`);
+
+    fetch(good_on_you_url)
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error("Network response was not ok");
+        }
+      })
+      .then(data => {
+        const parser = new DOMParser();
+        const html = parser.parseFromString(data, "text/html");
+        const element = html.querySelector("#__NEXT_DATA__");
+        if (element) {
+          const jsonData = JSON.parse(element.textContent);
+          const brandData = jsonData.props.pageProps.brand;
+          const laborRating = brandData.labourRating;
+          const environmentRating = brandData.environmentRating;
+          const animalRating = brandData.animalRating;
+
+          // Update ethicality score
+          const ethicallityScore = ((animalRating + laborRating + environmentRating) / 6).toFixed(0);
+          console.log(`Ethicality score for brand '${brand}' found using URL: ${good_on_you_url} is ${ethicallityScore}`);
+          document.getElementById('ethic-rater-rating-id').innerHTML = ethicallityScore;
+
+          // Update product name with the correct name of the company
+          const words = hyphenCombinations[index].split("-");
+          const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+          const capName = capitalizedWords.join(" ");
+          document.getElementById("product-name").innerHTML = `Product Name (${capName})`;
+
+          // Update ethicality score color
+          const circleColor = getColorEthic(ethicallityScore);
+          const circleElement = document.getElementById('ethic-rater-circle-id');
+          circleElement.style.backgroundColor = circleColor;
+
+          // Update remark
+          const remark = getRemark(ethicallityScore);
+          document.getElementById('ethic-rater-remarks-id').innerHTML = remark;
+        } else {
+          console.log(`Element with ID '__NEXT_DATA__' not found for URL: ${good_on_you_url}`);
+          index++;
+          tryCombination();
+        }
+      })
+      .catch(error => {
+        console.error(`Error occurred while fetching data from URL: ${good_on_you_url}`, error);
+        index++;
+        tryCombination();
+      });
+  }
+
+  tryCombination();
 }
 
 
@@ -164,7 +174,6 @@ window.onload = function () {
         // TODO: Add a fun fact... grab from backend eventually
         document.getElementById('funfact-id').innerHTML = 'X';
       });
-      document.getElementById("product-name").innerHTML = `Product Name (${brand.capitalize()})`
       document.getElementById("base-brand-url").innerHTML = base_url;
     });
   });
