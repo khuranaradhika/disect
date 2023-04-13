@@ -77,7 +77,7 @@ function getEthicality(brand) {
   // Generate combinations with two or more hyphens
   for (
     let hyphenCount = 2;
-    hyphenCount < /* brand.length */ MAX_HYPHENS;
+    hyphenCount <= /* brand.length */ MAX_HYPHENS;
     hyphenCount++
   ) {
     for (let i = 1; i < brand.length - hyphenCount + 1; i++) {
