@@ -18,9 +18,15 @@ router.get("/shipto/:location&:company", async (req, res) => {
         message: new CarbonEquivalence(81.3333333).get_emissions(),
       });
     } else if (company === "adidas") {
-      res.json({ emissions: 77.83 });
+      res.json({
+        emissions: 77.83,
+        message: new CarbonEquivalence(81.3333333).get_emissions(),
+      });
     } else if (company === "amazon") {
-      res.json({ emissions: 300.1 });
+      res.json({
+        emissions: 300.1,
+        message: new CarbonEquivalence(81.3333333).get_emissions(),
+      });
     } else {
       res.json({ emissions: 0 });
     }
@@ -53,7 +59,10 @@ router.get("/shipto/:location&:company", async (req, res) => {
     }
     expected_emissions /= Math.min(3, facilities.length);
     // return expected emissions as json
-    res.json({ emissions: expected_emissions });
+    res.json({
+      emissions: expected_emissions,
+      message: new CarbonEquivalence(expected_emissions).get_emissions(),
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
