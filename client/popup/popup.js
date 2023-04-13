@@ -1,14 +1,14 @@
-const colorRed = 'lightcoral';
-const colorYellow = 'khaki';
-const colorGreen = 'lightgreen';
-const units = ' kgs'; // need to allow this to change depending on user preference
+const colorRed = "lightcoral";
+const colorYellow = "khaki";
+const colorGreen = "lightgreen";
+const units = " kgs"; // need to allow this to change depending on user preference
+const MAX_HYPHENS = 2;
 
-
-Object.defineProperty(String.prototype, 'capitalize', {
+Object.defineProperty(String.prototype, "capitalize", {
   value: function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
   },
-  enumerable: false
+  enumerable: false,
 });
 
 // Determine ethicality rating circle color based on backend value
@@ -36,11 +36,11 @@ function getColorCO2(value) {
 // Determine ethicality rating remark based on backend value
 function getRemark(value) {
   if (value < 4) {
-    return 'Bad';
+    return "Bad";
   } else if (4 <= value && value < 7) {
-    return 'Okay';
+    return "Okay";
   } else {
-    return 'Good';
+    return "Good";
   }
 }
 
@@ -52,16 +52,16 @@ function getCurrentUrl(callback) {
 }
 
 async function getEmissions(user_lat, user_long, company) {
-  const response = await fetch(`http://localhost:5000/api/emissions/shipto/${user_lat},${user_long}&${company}`)
+  const response = await fetch(
+    `http://localhost:5000/api/emissions/shipto/${user_lat},${user_long}&${company}`
+  );
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   const data = await response.json();
   console.log(data);
-  return data.emissions;
+  return data;
 }
-
-
 
 function getEthicality(brand) {
   const hyphenCombinations = [];
@@ -75,9 +75,16 @@ function getEthicality(brand) {
   }
 
   // Generate combinations with two or more hyphens
-  for (let hyphenCount = 2; hyphenCount < brand.length; hyphenCount++) {
+  for (
+    let hyphenCount = 2;
+    hyphenCount < /* brand.length */ MAX_HYPHENS;
+    hyphenCount++
+  ) {
     for (let i = 1; i < brand.length - hyphenCount + 1; i++) {
-      const combination = `${brand.slice(0, i)}-${brand.slice(i, i + hyphenCount - 1)}-${brand.slice(i + hyphenCount - 1)}`;
+      const combination = `${brand.slice(0, i)}-${brand.slice(
+        i,
+        i + hyphenCount - 1
+      )}-${brand.slice(i + hyphenCount - 1)}`;
       hyphenCombinations.push(combination);
     }
   }
@@ -95,14 +102,14 @@ function getEthicality(brand) {
     console.log(`Trying URL: ${good_on_you_url}`);
 
     fetch(good_on_you_url)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.text();
         } else {
           throw new Error("Network response was not ok");
         }
       })
-      .then(data => {
+      .then((data) => {
         const parser = new DOMParser();
         const html = parser.parseFromString(data, "text/html");
         const element = html.querySelector("#__NEXT_DATA__");
@@ -114,32 +121,49 @@ function getEthicality(brand) {
           const animalRating = brandData.animalRating;
 
           // Update ethicality score
-          const ethicallityScore = ((animalRating + laborRating + environmentRating) / 6).toFixed(0);
-          console.log(`Ethicality score for brand '${brand}' found using URL: ${good_on_you_url} is ${ethicallityScore}`);
-          document.getElementById('ethic-rater-rating-id').innerHTML = ethicallityScore;
+          const ethicallityScore = (
+            (animalRating + laborRating + environmentRating) /
+            6
+          ).toFixed(0);
+          console.log(
+            `Ethicality score for brand '${brand}' found using URL: ${good_on_you_url} is ${ethicallityScore}`
+          );
+          document.getElementById("ethic-rater-rating-id").innerHTML =
+            ethicallityScore;
 
           // Update product name with the correct name of the company
           const words = hyphenCombinations[index].split("-");
-          const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+          const capitalizedWords = words.map(
+            (word) => word.charAt(0).toUpperCase() + word.slice(1)
+          );
           const capName = capitalizedWords.join(" ");
-          document.getElementById("product-name").innerHTML = `Product Name (${capName})`;
+          document.getElementById(
+            "product-name"
+          ).innerHTML = `Product Name (${capName})`;
 
           // Update ethicality score color
           const circleColor = getColorEthic(ethicallityScore);
-          const circleElement = document.getElementById('ethic-rater-circle-id');
+          const circleElement = document.getElementById(
+            "ethic-rater-circle-id"
+          );
           circleElement.style.backgroundColor = circleColor;
 
           // Update remark
           const remark = getRemark(ethicallityScore);
-          document.getElementById('ethic-rater-remarks-id').innerHTML = remark;
+          document.getElementById("ethic-rater-remarks-id").innerHTML = remark;
         } else {
-          console.log(`Element with ID '__NEXT_DATA__' not found for URL: ${good_on_you_url}`);
+          console.log(
+            `Element with ID '__NEXT_DATA__' not found for URL: ${good_on_you_url}`
+          );
           index++;
           tryCombination();
         }
       })
-      .catch(error => {
-        console.error(`Error occurred while fetching data from URL: ${good_on_you_url}`, error);
+      .catch((error) => {
+        console.error(
+          `Error occurred while fetching data from URL: ${good_on_you_url}`,
+          error
+        );
         index++;
         tryCombination();
       });
@@ -148,33 +172,35 @@ function getEthicality(brand) {
   tryCombination();
 }
 
-
-
 window.onload = function () {
   // Put statistics into the HTML
-  document.getElementById('ethic-rater-rating-id').innerHTML = "-";
-  document.getElementById('co2-units-display-id').innerHTML = "";
+  document.getElementById("ethic-rater-rating-id").innerHTML = "-";
+  document.getElementById("co2-units-display-id").innerHTML = "";
 
   // document.getElementById("co2-units-display-id").innerHTML = 4;
   navigator.geolocation.getCurrentPosition(function (pos) {
     const crd = pos.coords;
     userLat = crd.latitude;
     userLong = crd.longitude;
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       let url = tabs[0].url;
-      console.log(url)
-      const base_url = url.split('/').slice(0, 3).join('/')
-      const brand = url.split('.')[1];
+      console.log(url);
+      const base_url = url.split("/").slice(0, 3).join("/");
+      const brand = url.split(".")[1];
       getEthicality(brand);
-      getEmissions(userLat, userLong, brand).then((emissions) => {
-        document.getElementById("co2-units-display-id").textContent = `${emissions.toFixed(2)} ${units}`;
+      getEmissions(userLat, userLong, brand).then((response) => {
+        emissions = response.emissions;
+        message = response.message;
+        document.getElementById(
+          "co2-units-display-id"
+        ).textContent = `${emissions.toFixed(2)} ${units}`;
         const boxColor = getColorCO2(emissions);
-        const boxElement = document.getElementById('co2-units-display-id');
+        const boxElement = document.getElementById("co2-units-display-id");
         boxElement.style.backgroundColor = boxColor;
         // TODO: Add a fun fact... grab from backend eventually
-        document.getElementById('funfact-id').innerHTML = 'X';
+        document.getElementById("funfact-id").innerHTML = message;
       });
       document.getElementById("base-brand-url").innerHTML = base_url;
     });
   });
-}
+};
