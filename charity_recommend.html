@@ -1,91 +1,174 @@
-<select id="cause-select">
-  <option disabled selected>Select a cause</option>
-  <option>Labor/Worker's Rights</option>
-  <option>Carbon Emissions</option>
-  <option>Environmentally-Friendly</option>
-  <option>Animal Cruelty/Vegan</option>
-  <option>LGBTQ</option>
-  <option>Black Women / Black-owned</option>
-  <option>Fashion Sustainability Support</option>
-  <option>Made in USA</option>
-</select>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Charities</title>
+</head>
+<body>
+  <h1>Charities</h1>
+  <form id="cause">
+    <p>Select cause(s):</p>
+    <label><input type="checkbox" name="cause" value="Labor/Worker's Rights">Labor/Worker's Rights</label><br>
+    <label><input type="checkbox" name="cause" value="Carbon Emissions">Carbon Emissions</label><br>
+    <label><input type="checkbox" name="cause" value="Environmentally-Friendly">Environmentally-Friendly</label><br>
+    <label><input type="checkbox" name="cause" value="Animal Cruelty/Vegan">Animal Cruelty/Vegan</label><br>
+    <label><input type="checkbox" name="cause" value="LGBTQ">LGBTQ</label><br>
+    <label><input type="checkbox" name="cause" value="Black Women / Black-owned">Black Women / Black-owned</label><br>
+    <label><input type="checkbox" name="cause" value="Fashion Sustainability Support">Fashion Sustainability Support</label><br>
+    <label><input type="checkbox" name="cause" value="Made in USA">Made in USA</label><br>
+    <br>
+    <input type="button" value="Display Charities" onclick="displayCharities()">
+    <input type="button" value="Display Overlap Charities" onclick="displayOverlapCharities()">
+  </form>
 
-<button onclick="displayCharities()">Get Charities</button>
+  <h1>User Preferences</h1>
+  <form id="user">
+    <p>Select cause(s):</p>
+    <label><input type="checkbox" name="user" value="Labor/Worker's Rights">Labor/Worker's Rights</label><br>
+    <label><input type="checkbox" name="user" value="Carbon Emissions">Carbon Emissions</label><br>
+    <label><input type="checkbox" name="user" value="Environmentally-Friendly">Environmentally-Friendly</label><br>
+    <label><input type="checkbox" name="user" value="Animal Cruelty/Vegan">Animal Cruelty/Vegan</label><br>
+    <label><input type="checkbox" name="user" value="LGBTQ">LGBTQ</label><br>
+    <label><input type="checkbox" name="user" value="Black Women / Black-owned">Black Women / Black-owned</label><br>
+    <label><input type="checkbox" name="user" value="Fashion Sustainability Support">Fashion Sustainability Support</label><br>
+    <label><input type="checkbox" name="user" value="Made in USA">Made in USA</label><br>
+    <br>
+    <input type="button" value="Display overlap" onclick="displayOverlap()">
+    <!-- <input type="button" value="Display overlap" onclick="compareCheckboxes()"> -->
+  </form>
 
-<script>
-  const charityDict = {
-    "Labor/Worker's Rights": [
-      "https://cleanclothes.org/donate",
-      "https://www.workersrights.org/donate/",
-      "https://laborrights.app.neoncrm.com/np/clients/laborrights/donation.jsp",
-      "https://labourbehindthelabel.org/donate/",
-      "https://www.maquilasolidarity.org/en/civicrm/contribute/transact?reset=1&id=1",
-      "https://www.freedomunited.org/"
-    ],
-    "Carbon Emissions": [
-      "https://www.catf.us/",
-      "https://carbon180.org/donate",
-      "https://www.evergreenaction.com/"
-    ],
-    "Environmentally-Friendly": [
-      "https://www.nature.org/en-us/",
-      "https://welldonefoundation.org/",
-      "https://www.climatefoundation.org/",
-      "https://www.evergreenaction.com/"
-    ],
-    "Animal Cruelty/Vegan": [
-      "https://crueltyfreeinternational.org/",
-      "https://caat.jhsph.edu/"
-    ],
-    "LGBTQ": [
-      "https://www.thetrevorproject.org/",
-      "https://www.hrc.org/",
-      "https://pointfoundation.org/",
-      "https://www.bagly.org/covid19-direct-aid",
-      "https://southernequality.org/fund-your-work/get-funding/",
-      "https://thedruproject.org/",
-      "https://www.glitsinc.org/"
-    ],
-    "Black Women / Black-owned": [
-      "https://wearebgc.org/",
-      "https://www.blackconnect.org/donate"
-    ],
-    "Fashion Sustainability Support": [
-      "https://www.fashionrevolution.org/"
-    ],
-    "Made in USA": [
-      "https://madeinamerica.org"
-    ]
-  };
+  <!-- <div id="overlap-output"></div> -->
+  <div id="charity-output"></div>
+  
+  <script>
+    const charityDict = {
+        "Labor/Worker's Rights": [
+            ["Charity 1", "https://charity1.com", "https://charity1.com/donate", "Description of charity 1"],
+            ["Charity 2", "https://charity2.com", "https://charity2.com/donate", "Description of charity 2"],
+            ["Charity 3", "https://charity3.com", "https://charity3.com/donate", "Description of charity 3"]
+        ],
+        "Carbon Emissions": [
+            ["Charity 4", "https://charity4.com", "https://charity4.com/donate", "Description of charity 4"],
+            ["Charity 5", "https://charity5.com", "https://charity5.com/donate", "Description of charity 5"]
+        ],
+        "Environmentally-Friendly": [
+            ["Charity 6", "https://charity6.com", "https://charity6.com/donate", "Description of charity 6"],
+            ["Charity 7", "https://charity7.com", "https://charity7.com/donate", "Description of charity 7"],
+            ["Charity 8", "https://charity8.com", "https://charity8.com/donate", "Description of charity 8"]
+        ],
+        "Animal Cruelty/Vegan": [
+            ["Charity 9", "https://charity9.com", "https://charity9.com/donate", "Description of charity 9"],
+            ["Charity 10", "https://charity10.com", "https://charity10.com/donate", "Description of charity 10"]
+        ],
+        "LGBTQ": [
+            ["Charity 11", "https://charity11.com", "https://charity11.com/donate", "Description of charity 11"]
+        ],
+        "Black Women / Black-owned": [
+            ["Charity 12", "https://charity12.com", "https://charity12.com/donate", "Description of charity 12"],
+            ["Charity 13", "https://charity13.com", "https://charity13.com/donate", "Description of charity 13"]
+        ],
+        "Fashion Sustainability Support": [
+            ["Charity 14", "https://charity14.com", "https://charity14.com/donate", "Description of charity 14"],
+            ["Charity 15", "https://charity15.com", "https://charity15.com/donate", "Description of charity 15"],
+            ["Charity 16", "https://charity16.com", "https://charity16.com/donate", "Description of charity 16"]
+        ],
+        "Made in USA": [
+            ["Charity 17", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"],
+            ["Charity dub", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"],
+            ["Charity 11241414", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"],
+            ["Charity 12312", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"]
+        ]
+    };
 
-  function getCharities(cause) {
-    let charities = charityDict[cause];
-    if (charities.length <= 3) {
-      return charities;
-    } else {
-      let uniqueCharities = new Set();
-      while (uniqueCharities.size < 3) {
-        let randomCharity = charities[Math.floor(Math.random() * charities.length)];
-        uniqueCharities.add(randomCharity);
+
+
+
+    function compareCheckboxes() {
+      const causeCheckboxes = document.getElementsByName('cause');
+      const userCheckboxes = document.getElementsByName('user');
+      const causeChecked = Array.from(causeCheckboxes).filter(checkbox => checkbox.checked);
+      const userChecked = Array.from(userCheckboxes).filter(checkbox => checkbox.checked);
+      const overlap = causeChecked.filter(causeBox => {
+        return userChecked.some(userBox => userBox.value === causeBox.value);
+      });
+      return overlap.map(box => box.value);
+    }
+
+
+
+    function displayOverlap() {
+      let div = document.getElementById("charity-output");
+      div.innerHTML = "<h2>" + "Overlapping Charities" + "</h2>";
+      let c_array = compareCheckboxes();
+      // console.log(c_array);
+      for (let i = 0; i < c_array.length; i++){
+        div.innerHTML += "<h3>" + c_array[i] + "</h3>";
       }
-      return Array.from(uniqueCharities);
     }
-  }
 
 
-  function displayCharities() {
-    let selectedCause = document.getElementById("cause-select").value;
-    let charities = getCharities(selectedCause);
-    let outputDiv = document.getElementById("charity-output");
-    outputDiv.innerHTML = "<h2>" + selectedCause + "</h2>";
-    for (let i = 0; i < charities.length; i++) {
-      let charity = charities[i];
-      outputDiv.innerHTML += "<h3>" + charity[0] + "</h3>";
-      outputDiv.innerHTML += "<p><a href='" + charity[1] + "'>Visit Website</a></p>";
-      outputDiv.innerHTML += "<p><a href='" + charity[2] + "'>Donate</a></p>";
-      outputDiv.innerHTML += "<p>" + charity[3] + "</p>";
+
+
+    // <!-- getCharities returns up to 3 random charities for the inputted cause -->
+    function getCharities(cause) {
+        let charities = charityDict[cause];
+        if (charities.length <= 3) {
+            return charities;
+        } else {
+            let uniqueCharities = new Set();
+            while (uniqueCharities.size < 3) {
+            let randomCharity = charities[Math.floor(Math.random() * charities.length)];
+            uniqueCharities.add(randomCharity);
+            }
+            return Array.from(uniqueCharities);
+        }
     }
-  }
-</script>
 
-<div id="charity-output"></div>
+
+    // <!-- displayCharities displays each charity for each select cause. need to modify for each brand (change parameter), also implement user overlap-->
+    function displayCharities() {
+      let selectedCauses = [];
+      let checkboxes = document.getElementsByName("cause");
+      for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          selectedCauses.push(checkboxes[i].value);
+        }
+      }
+      let outputDiv = document.getElementById("charity-output");
+      outputDiv.innerHTML = "";
+      for (let j = 0; j < selectedCauses.length; j++) {
+        let selectedCause = selectedCauses[j];
+        let charities = getCharities(selectedCause);
+        outputDiv.innerHTML += "<h2>" + selectedCause + "</h2>";
+        for (let k = 0; k < charities.length; k++) {
+          let charity = charities[k];
+          outputDiv.innerHTML += "<h3>" + charity[0] + "</h3>";
+          outputDiv.innerHTML += "<p><a href='" + charity[1] + "'>Visit Website</a></p>";
+          outputDiv.innerHTML += "<p><a href='" + charity[2] + "'>Donate</a></p>";
+          outputDiv.innerHTML += "<p>" + charity[3] + "</p>";
+        }
+      }
+    }
+
+
+
+    function displayOverlapCharities() {
+      let selectedCauses = compareCheckboxes();
+      let outputDiv = document.getElementById("charity-output");
+      outputDiv.innerHTML = "";
+      for (let j = 0; j < selectedCauses.length; j++) {
+        let selectedCause = selectedCauses[j];
+        let charities = getCharities(selectedCause);
+        outputDiv.innerHTML += "<h2>" + selectedCause + "</h2>";
+        for (let k = 0; k < charities.length; k++) {
+          let charity = charities[k];
+          outputDiv.innerHTML += "<h3>" + charity[0] + "</h3>";
+          outputDiv.innerHTML += "<p><a href='" + charity[1] + "'>Visit Website</a></p>";
+          outputDiv.innerHTML += "<p><a href='" + charity[2] + "'>Donate</a></p>";
+          outputDiv.innerHTML += "<p>" + charity[3] + "</p>";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
