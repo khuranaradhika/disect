@@ -1,0 +1,91 @@
+<select id="cause-select">
+  <option disabled selected>Select a cause</option>
+  <option>Labor/Worker's Rights</option>
+  <option>Carbon Emissions</option>
+  <option>Environmentally-Friendly</option>
+  <option>Animal Cruelty/Vegan</option>
+  <option>LGBTQ</option>
+  <option>Black Women / Black-owned</option>
+  <option>Fashion Sustainability Support</option>
+  <option>Made in USA</option>
+</select>
+
+<button onclick="displayCharities()">Get Charities</button>
+
+<script>
+  const charityDict = {
+    "Labor/Worker's Rights": [
+      "https://cleanclothes.org/donate",
+      "https://www.workersrights.org/donate/",
+      "https://laborrights.app.neoncrm.com/np/clients/laborrights/donation.jsp",
+      "https://labourbehindthelabel.org/donate/",
+      "https://www.maquilasolidarity.org/en/civicrm/contribute/transact?reset=1&id=1",
+      "https://www.freedomunited.org/"
+    ],
+    "Carbon Emissions": [
+      "https://www.catf.us/",
+      "https://carbon180.org/donate",
+      "https://www.evergreenaction.com/"
+    ],
+    "Environmentally-Friendly": [
+      "https://www.nature.org/en-us/",
+      "https://welldonefoundation.org/",
+      "https://www.climatefoundation.org/",
+      "https://www.evergreenaction.com/"
+    ],
+    "Animal Cruelty/Vegan": [
+      "https://crueltyfreeinternational.org/",
+      "https://caat.jhsph.edu/"
+    ],
+    "LGBTQ": [
+      "https://www.thetrevorproject.org/",
+      "https://www.hrc.org/",
+      "https://pointfoundation.org/",
+      "https://www.bagly.org/covid19-direct-aid",
+      "https://southernequality.org/fund-your-work/get-funding/",
+      "https://thedruproject.org/",
+      "https://www.glitsinc.org/"
+    ],
+    "Black Women / Black-owned": [
+      "https://wearebgc.org/",
+      "https://www.blackconnect.org/donate"
+    ],
+    "Fashion Sustainability Support": [
+      "https://www.fashionrevolution.org/"
+    ],
+    "Made in USA": [
+      "https://madeinamerica.org"
+    ]
+  };
+
+  function getCharities(cause) {
+    let charities = charityDict[cause];
+    if (charities.length <= 3) {
+      return charities;
+    } else {
+      let uniqueCharities = new Set();
+      while (uniqueCharities.size < 3) {
+        let randomCharity = charities[Math.floor(Math.random() * charities.length)];
+        uniqueCharities.add(randomCharity);
+      }
+      return Array.from(uniqueCharities);
+    }
+  }
+
+
+  function displayCharities() {
+    let selectedCause = document.getElementById("cause-select").value;
+    let charities = getCharities(selectedCause);
+    let outputDiv = document.getElementById("charity-output");
+    outputDiv.innerHTML = "<h2>" + selectedCause + "</h2>";
+    for (let i = 0; i < charities.length; i++) {
+      let charity = charities[i];
+      outputDiv.innerHTML += "<h3>" + charity[0] + "</h3>";
+      outputDiv.innerHTML += "<p><a href='" + charity[1] + "'>Visit Website</a></p>";
+      outputDiv.innerHTML += "<p><a href='" + charity[2] + "'>Donate</a></p>";
+      outputDiv.innerHTML += "<p>" + charity[3] + "</p>";
+    }
+  }
+</script>
+
+<div id="charity-output"></div>
