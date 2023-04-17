@@ -1,0 +1,34 @@
+[
+  {
+    "company": "nike",
+    "causes": ["LGBTQ", "Vegan", "Sustainability"]
+  },
+  {
+    "company": "amazon",
+    "causes": ["LGBTQ", "Vegan", "Sustainability"]
+  },
+  {
+    "company": "adidas",
+    "causes": ["LGBTQ", "Vegan", "Sustainability"]
+  },
+  {
+    "company": "nike",
+    "causes": ["LGBTQ", "Vegan", "Sustainability"]
+  },
+  {
+    "company": "alchemist",
+    "causes": ["LGBTQ", "Vegan", "Black Owned"]
+  },
+  {
+    "company": "asics",
+    "causes": ["LGBTQ", "Vegan", "Environmentall Friendly"]
+  },
+  {
+    "company": "puma",
+    "causes": ["LGBTQ", "Vegan", "Sustainability"]
+  },
+  {
+    "company": "toms",
+    "causes": ["LGBTQ", "Vegan", "Sustainability"]
+  }
+]
