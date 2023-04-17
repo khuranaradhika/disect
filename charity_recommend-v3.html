@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Charities</title>
+</head>
+<body>
+  <h1>Charities</h1>
+  <form id="cause">
+    <p>Select cause(s):</p>
+    <label><input type="checkbox" name="cause" value="Labor/Worker's Rights">Labor/Worker's Rights</label><br>
+    <label><input type="checkbox" name="cause" value="Carbon Emissions">Carbon Emissions</label><br>
+    <label><input type="checkbox" name="cause" value="Environmentally-Friendly">Environmentally-Friendly</label><br>
+    <label><input type="checkbox" name="cause" value="Animal Cruelty/Vegan">Animal Cruelty/Vegan</label><br>
+    <label><input type="checkbox" name="cause" value="LGBTQ">LGBTQ</label><br>
+    <label><input type="checkbox" name="cause" value="Black Women / Black-owned">Black Women / Black-owned</label><br>
+    <label><input type="checkbox" name="cause" value="Fashion Sustainability Support">Fashion Sustainability Support</label><br>
+    <label><input type="checkbox" name="cause" value="Made in USA">Made in USA</label><br>
+    <br>
+    <input type="button" value="Display Charities" onclick="displayCharities()">
+    <input type="button" value="Display Overlap Charities" onclick="displayOverlapCharities()">
+  </form>
+
+  <h1>User Preferences</h1>
+  <form id="user">
+    <p>Select cause(s):</p>
+    <label><input type="checkbox" name="user" value="Labor/Worker's Rights">Labor/Worker's Rights</label><br>
+    <label><input type="checkbox" name="user" value="Carbon Emissions">Carbon Emissions</label><br>
+    <label><input type="checkbox" name="user" value="Environmentally-Friendly">Environmentally-Friendly</label><br>
+    <label><input type="checkbox" name="user" value="Animal Cruelty/Vegan">Animal Cruelty/Vegan</label><br>
+    <label><input type="checkbox" name="user" value="LGBTQ">LGBTQ</label><br>
+    <label><input type="checkbox" name="user" value="Black Women / Black-owned">Black Women / Black-owned</label><br>
+    <label><input type="checkbox" name="user" value="Fashion Sustainability Support">Fashion Sustainability Support</label><br>
+    <label><input type="checkbox" name="user" value="Made in USA">Made in USA</label><br>
+    <br>
+    <input type="button" value="Display overlap" onclick="displayOverlap()">
+    <!-- <input type="button" value="Display overlap" onclick="compareCheckboxes()"> -->
+  </form>
+
+  <h1>Select a brand:</h1>
+  <form id="brands">
+    <input type="radio" id="adidas" name="brand" value="Adidas">
+    <label for="adidas">Adidas</label><br>
+    <input type="radio" id="amazon" name="brand" value="Amazon">
+    <label for="amazon">Amazon</label><br>
+    <input type="radio" id="dicks" name="brand" value="Dick's">
+    <label for="dicks">Dick's</label><br>
+    <input type="radio" id="gap" name="brand" value="Gap Inc.">
+    <label for="gap">Gap Inc.</label><br>
+    <input type="radio" id="hm" name="brand" value="H&M Group">
+    <label for="hm">H&M Group</label><br>
+    <input type="radio" id="lululemon" name="brand" value="Lululemon">
+    <label for="lululemon">Lululemon</label><br>
+    <input type="radio" id="nike" name="brand" value="Nike">
+    <label for="nike">Nike</label><br>
+    <input type="radio" id="nordstrom" name="brand" value="Nordstrom">
+    <label for="nordstrom">Nordstrom</label><br>
+    <input type="radio" id="patagonia" name="brand" value="Patagonia">
+    <label for="patagonia">Patagonia</label><br>
+    <input type="radio" id="under_armour" name="brand" value="Under Armour">
+    <label for="under_armour">Under Armour</label><br>
+    <input type="button" value="Display causes for select brand" onclick="displayCharities()">
+  </form>
+
+  <!-- <div id="overlap-output"></div> -->
+  <div id="charity-output"></div>
+  
+  <script>
+    // Define the dictionaries
+    const adidas_dict = {"Adidas": ["Labor/Worker's Rights", "Environmentally-Friendly", "Fashion sustainability support"]};
+    const amazon_dict = {"Amazon": ["Labor/Worker's Rights", "Made in USA", "Black Women / Black-owned"]};
+    const dicks_dict = {"Dick's": ["Labor/Worker's Rights", "Carbon Emissions"]};
+    const gap_dict = {"Gap Inc.": ["Labor/Worker's Rights", "Environmentally-Friendly", "Black Women / Black-owned"]};
+    const hm_dict = {"H&M Group": ["Labor/Worker's Rights", "Environmentally-Friendly", "Fashion sustainability support"]};
+    const lululemon_dict = {"Lululemon": ["Labor/Worker's Rights", "Environmentally-Friendly", "LGBTQ"]};
+    const nike_dict = {"Nike": ["Labor/Worker's Rights", "Environmentally-Friendly", "Black Women / Black-owned"]};
+    const nordstrom_dict = {"Nordstrom": ["Labor/Worker's Rights", "Environmentally-Friendly", "Black Women / Black-owned"]};
+    const patagonia_dict = {"Patagonia": ["Environmentally-Friendly", "Labor/Worker's Rights", "Made in USA"]};
+    const under_armour_dict = {"Under Armour": ["Labor/Worker's Rights", "Environmentally-Friendly", "Black Women / Black-owned"]};
+
+    // Combine the dictionaries into a single dictionary
+    const brands_dict = {};
+    Object.assign(brands_dict, adidas_dict, amazon_dict, dicks_dict, gap_dict, hm_dict, lululemon_dict, nike_dict, nordstrom_dict, patagonia_dict, under_armour_dict);
+
+    const charityDict = {
+        "Labor/Worker's Rights": [
+            ["Charity 1", "https://charity1.com", "https://charity1.com/donate", "Description of charity 1"],
+            ["Charity 2", "https://charity2.com", "https://charity2.com/donate", "Description of charity 2"],
+            ["Charity 3", "https://charity3.com", "https://charity3.com/donate", "Description of charity 3"]
+        ],
+        "Carbon Emissions": [
+            ["Charity 4", "https://charity4.com", "https://charity4.com/donate", "Description of charity 4"],
+            ["Charity 5", "https://charity5.com", "https://charity5.com/donate", "Description of charity 5"]
+        ],
+        "Environmentally-Friendly": [
+            ["Charity 6", "https://charity6.com", "https://charity6.com/donate", "Description of charity 6"],
+            ["Charity 7", "https://charity7.com", "https://charity7.com/donate", "Description of charity 7"],
+            ["Charity 8", "https://charity8.com", "https://charity8.com/donate", "Description of charity 8"]
+        ],
+        "Animal Cruelty/Vegan": [
+            ["Charity 9", "https://charity9.com", "https://charity9.com/donate", "Description of charity 9"],
+            ["Charity 10", "https://charity10.com", "https://charity10.com/donate", "Description of charity 10"]
+        ],
+        "LGBTQ": [
+            ["Charity 11", "https://charity11.com", "https://charity11.com/donate", "Description of charity 11"]
+        ],
+        "Black Women / Black-owned": [
+            ["Charity 12", "https://charity12.com", "https://charity12.com/donate", "Description of charity 12"],
+            ["Charity 13", "https://charity13.com", "https://charity13.com/donate", "Description of charity 13"]
+        ],
+        "Fashion Sustainability Support": [
+            ["Charity 14", "https://charity14.com", "https://charity14.com/donate", "Description of charity 14"],
+            ["Charity 15", "https://charity15.com", "https://charity15.com/donate", "Description of charity 15"],
+            ["Charity 16", "https://charity16.com", "https://charity16.com/donate", "Description of charity 16"]
+        ],
+        "Made in USA": [
+            ["Charity 17", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"],
+            ["Charity dub", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"],
+            ["Charity 11241414", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"],
+            ["Charity 12312", "https://charity17.com", "https://charity17.com/donate", "Description of charity 17"]
+        ]
+    };
+
+    //returns overlap of selected brands causes with users preferences causes
+    //otherwise returns brands causes
+    function compareCheckboxArray() {
+      const causeCheckboxes = document.getElementsByName('user');
+      const causeChecked = Array.from(causeCheckboxes).filter(checkbox => checkbox.checked);
+
+      const selectedBrand = document.querySelector('input[name="brand"]:checked').value;
+      const brandCauses = brands_dict[selectedBrand];
+
+      const overlap = brandCauses.filter(brandCause => {
+        return causeChecked.some(causeBox => causeBox.value === brandCause);
+      });
+      return overlap.length > 0 ? overlap : brandCauses;
+    //   const x = overlap.length > 0 ? overlap : brandCauses;
+    //   console.log(x);
+    }
+
+    //gets charities for an inputted cause
+    function getCharities(cause) {
+        let charities = charityDict[cause];
+        if (charities.length <= 3) {
+            return charities;
+        } else {
+            let uniqueCharities = new Set();
+            while (uniqueCharities.size < 3) {
+            let randomCharity = charities[Math.floor(Math.random() * charities.length)];
+            uniqueCharities.add(randomCharity);
+            }
+            return Array.from(uniqueCharities);
+        }
+    }
+
+    //displays charities for the resulting list of causes
+    function displayCharities() {
+      let selectedCauses = compareCheckboxArray();
+      let outputDiv = document.getElementById("charity-output");
+      outputDiv.innerHTML = "";
+      for (let j = 0; j < selectedCauses.length; j++) {
+        let selectedCause = selectedCauses[j];
+        let charities = getCharities(selectedCause);
+        outputDiv.innerHTML += "<h2>" + selectedCause + "</h2>";
+        for (let k = 0; k < charities.length; k++) {
+          let charity = charities[k];
+          outputDiv.innerHTML += "<h3>" + charity[0] + "</h3>";
+          outputDiv.innerHTML += "<p><a href='" + charity[1] + "'>Visit Website</a></p>";
+          outputDiv.innerHTML += "<p><a href='" + charity[2] + "'>Donate</a></p>";
+          outputDiv.innerHTML += "<p>" + charity[3] + "</p>";
+        }
+      }
+    }
+
+
+  </script>
+</body>
+</html>
