@@ -6,12 +6,8 @@
   "author": "@di$ectTeam",
   "content_scripts": [
     {
-      "js": [
-        "scripts/content-script.js"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
+      "js": ["scripts/content-script.js"],
+      "matches": ["<all_urls>"]
     }
   ],
   "background": {
@@ -22,10 +18,5 @@
     "default_icon": "icons/disect_icon.png"
   },
   "options_page": "options/options.html",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "geolocation",
-    "tabs"
-  ]
+  "permissions": ["activeTab", "storage", "geolocation", "tabs"]
 }

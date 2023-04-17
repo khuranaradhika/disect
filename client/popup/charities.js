@@ -29,7 +29,14 @@ async function getCharities(causes) {
   return charities;
 }
 
+function openWindow(url) {
+  console.log(url);
+  window.open(url);
+}
+
 function addListing(charity) {
+  console.log(charity.main_website_url);
+  console.log(charity.donation_url);
   document.getElementById("charities-list").insertAdjacentHTML(
     "beforeend",
     `<div class="charity-entry">
@@ -39,11 +46,21 @@ function addListing(charity) {
      ${charity.short_description} 
     </p>
     <div align="right" class="buttons">
-      <button class="learn-more" onclick = "window.open('${charity.main_website_url}');">Learn More</button>
-      <button class="donate" onclick = "window.open('${charity.main_website_url}');">Donate</button>
+      <button id = "${charity.name}_more"class="learn-more">Learn More</button>
+      <button id = "${charity.name}_donate" class="donate">Donate</button>
     </div>
   </div>`
   );
+  document
+    .getElementById(charity.name + "_more")
+    .addEventListener("click", () => {
+      window.open(charity.main_website_url);
+    });
+  document
+    .getElementById(charity.name + "_donate")
+    .addEventListener("click", () => {
+      window.open(charity.donation_url);
+    });
 }
 
 window.onload = function () {
