@@ -76,16 +76,18 @@ function getEthicality(brand) {
 
   // Generate combinations with two or more hyphens
   for (
-    let hyphenCount = 2;
+    var hyphenCount = 2;
     hyphenCount <= /* brand.length */ MAX_HYPHENS;
     hyphenCount++
   ) {
-    for (let i = 1; i < brand.length - hyphenCount + 1; i++) {
-      const combination = `${brand.slice(0, i)}-${brand.slice(
-        i,
-        i + hyphenCount - 1
-      )}-${brand.slice(i + hyphenCount - 1)}`;
-      hyphenCombinations.push(combination);
+    for (var i = 1; i < brand.length - hyphenCount + 1; i++) {
+      for (var j = i + 1; j < brand.length - 1; j++) {
+        const combination = `${brand.slice(0, i)}-${brand.slice(
+          i,
+          j
+        )}-${brand.slice(j, brand.length)}`;
+        hyphenCombinations.push(combination);
+      }
     }
   }
 

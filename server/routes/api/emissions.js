@@ -20,12 +20,12 @@ router.get("/shipto/:location&:company", async (req, res) => {
     } else if (company === "adidas") {
       res.json({
         emissions: 77.83,
-        message: new CarbonEquivalence(81.3333333).get_emissions(),
+        message: new CarbonEquivalence(77.83).get_emissions(),
       });
     } else if (company === "amazon") {
       res.json({
         emissions: 300.1,
-        message: new CarbonEquivalence(81.3333333).get_emissions(),
+        message: new CarbonEquivalence(300.1).get_emissions(),
       });
     } else {
       res.json({ emissions: 0 });
