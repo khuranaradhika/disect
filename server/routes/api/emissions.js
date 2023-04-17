@@ -14,8 +14,8 @@ router.get("/shipto/:location&:company", async (req, res) => {
     // Hard-coded bs because dataloy a hoe; comment out when we need to actually test, and an API key is available
     if (company === "nike") {
       res.json({
-        emissions: 81.333333333,
-        message: new CarbonEquivalence(81.3333333).get_emissions(),
+        emissions: 21.333333333,
+        message: new CarbonEquivalence(21.3333333).get_emissions(),
       });
     } else if (company === "adidas") {
       res.json({
@@ -26,6 +26,21 @@ router.get("/shipto/:location&:company", async (req, res) => {
       res.json({
         emissions: 300.1,
         message: new CarbonEquivalence(300.1).get_emissions(),
+      });
+    } else if (company === "toms") {
+      res.json({
+        emissions: 713.27,
+        message: new CarbonEquivalence(713.27).get_emissions(),
+      });
+    } else if (company === "puma") {
+      res.json({
+        emissions: 75.42,
+        message: new CarbonEquivalence(75.42).get_emissions(),
+      });
+    } else if (company === "asics") {
+      res.json({
+        emissions: 92.1,
+        message: new CarbonEquivalence(92.1).get_emissions(),
       });
     } else {
       res.json({ emissions: 0 });

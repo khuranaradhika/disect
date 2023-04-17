@@ -47,45 +47,54 @@ function addListing(charity) {
 }
 
 window.onload = function () {
-  getCompanyCauses("nike").then((causes) => {
-    var userCauses = getUserCauses();
-    console.log(userCauses);
-    console.log(causes);
-    userCauses = userCauses.map((e) => e.trim());
-    const filteredArray = causes.filter((value) => userCauses.includes(value));
-    console.log(filteredArray);
-    // get all charities from each category
-    getCharities(filteredArray).then((charities) => {
-      ptrs = [];
-      finalChars = [];
-      for (var i = 0; i < charities.length; i++) {
-        ptrs.push(0);
-      }
-      chars = 0;
-      while (chars < MAX_CHARITIES) {
+  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    let url = tabs[0].url;
+    console.log(url);
+    const brand = url.split(".")[1];
+    getCompanyCauses(brand).then((causes) => {
+      var userCauses = getUserCauses();
+      console.log(userCauses);
+      console.log(causes);
+      userCauses = userCauses.map((e) => e.trim());
+      const filteredArray = causes.filter((value) =>
+        userCauses.includes(value)
+      );
+      console.log(filteredArray);
+      // get all charities from each category
+      getCharities(filteredArray).then((charities) => {
+        ptrs = [];
+        finalChars = [];
+        var total_chars = 0;
         for (var i = 0; i < charities.length; i++) {
-          if (chars >= MAX_CHARITIES) {
-            break;
-          }
-          if (ptrs[i] < charities[i].length) {
-            finalChars.push(charities[i][ptrs[i]]);
-            ptrs[i] += 1;
-            chars += 1;
+          ptrs.push(0);
+          total_chars += charities[i].length;
+        }
+        chars = 0;
+        while (chars < Math.min(total_chars, MAX_CHARITIES)) {
+          for (var i = 0; i < charities.length; i++) {
+            if (chars >= MAX_CHARITIES) {
+              break;
+            }
+            if (ptrs[i] < charities[i].length) {
+              finalChars.push(charities[i][ptrs[i]]);
+              ptrs[i] += 1;
+              chars += 1;
+            }
           }
         }
-      }
-      console.log(finalChars);
-      //remove initialListings
-      const initialListing = document.getElementById("charities-list");
-      console.log(initialListing);
-      console.log(typeof initialListing[0]);
-      while (initialListing.firstChild) {
-        initialListing.removeChild(initialListing.firstChild);
-      }
-      // add new children
-      for (var i = 0; i < finalChars.length; i++) {
-        addListing(finalChars[i]);
-      }
+        console.log(finalChars);
+        //remove initialListings
+        const initialListing = document.getElementById("charities-list");
+        console.log(initialListing);
+        console.log(typeof initialListing[0]);
+        while (initialListing.firstChild) {
+          initialListing.removeChild(initialListing.firstChild);
+        }
+        // add new children
+        for (var i = 0; i < finalChars.length; i++) {
+          addListing(finalChars[i]);
+        }
+      });
     });
   });
 };
