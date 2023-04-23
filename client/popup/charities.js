@@ -64,10 +64,12 @@ function addListing(charity) {
 }
 
 window.onload = function () {
-  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+  chrome.tabs.query({ active: true }, (tabs) => {
+    console.log(tabs);
     let url = tabs[0].url;
     console.log(url);
     const brand = url.split(".")[1];
+    console.log(brand);
     getCompanyCauses(brand).then((causes) => {
       var userCauses = getUserCauses();
       console.log(userCauses);

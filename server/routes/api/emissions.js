@@ -79,7 +79,7 @@ router.get("/shipto/:location&:company", async (req, res) => {
       message: new CarbonEquivalence(expected_emissions).get_emissions(),
     });
   } catch (err) {
-    console.error(err.message);
+    console.error("api/emissions" + err.message);
     res.status(500).send("Server Error");
   }
 });
