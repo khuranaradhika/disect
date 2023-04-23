@@ -187,7 +187,7 @@ class CarbonEquivalence {
     var pair = undefined;
     while (equiv < 1) {
       // Random number 1-23
-      let rand = Math.floor(Math.random() * 23) + 1;
+      let rand = Math.floor(Math.random() * 22) + 1;
       pair = this.conversion.get(rand);
       // Convert kg value to metric ton and find its equivalence
       equiv = Math.floor((this.kgs_co2 / 1000) * pair[0]);
