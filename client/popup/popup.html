@@ -1,52 +1,73 @@
 <html>
-
-<head>
+  <head>
     <title>Di$ect</title>
-    <link rel="stylesheet" href="popup.css">
-    <link rel="stylesheet" href="../themes/lightmode.css">
-    <script type = "text/javascript" src = "./popup.js"></script>
-</head>
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="../themes/lightmode.css" />
+    <script type="text/javascript" src="./popup.js"></script>
+  </head>
 
-<body>
+  <body>
     <div class="popup-product-info" id="popup-product-info-id">
-        <h2>Data for <b id = "product-name">Product Name (Brand)</b></h2>
-        <a style="padding-right: 5px" href="" target="_blank" id = "base-brand-url">product-brand.com</a>
+      <h2>Data for <b id="product-name">Product Name (Brand)</b></h2>
+      <a style="padding-right: 5px" href="" target="_blank" id="base-brand-url"
+        >product-brand.com</a
+      >
     </div>
 
     <div class="maintab-display">
-        <div class="maintab-left">
-            <div class="ethic-rater-circle" id = "ethic-rater-circle-id">
-                <div class="ethic-rater-rating"><span id="ethic-rater-rating-id"></span><span class="ethic-rater-rating-small">/10</span></div>
-                <span class="ethic-rater-remarks" id="ethic-rater-remarks-id">Good</span>
-            </div>
-            <ul class="maintab-left-list">
-                <li>+ Uses eco-friendly materials</li>
-                <li>+ Visits suppliers regularly</li>
-                <li>+ Traces supply chain</li>
-                <li>+ Workers paid a living wage</li>
-                <li>+ No animal products</li>
-                <li>- Not Vegan</li>
-                <li>- No Code of Conduct</li>
-            </ul>
-            
+      <div class="maintab-left">
+        <div class="ethic-rater-circle" id="ethic-rater-circle-id">
+          <div class="ethic-rater-rating">
+            <span id="ethic-rater-rating-id"></span
+            ><span class="ethic-rater-rating-small">/10</span>
+          </div>
+          <span class="ethic-rater-remarks" id="ethic-rater-remarks-id"></span>
         </div>
-        <div class="maintab-right">
-            <div class="co2-units-display" id="co2-units-display-id"></div>
-            <div class="co2-facts" id="co2-facts-id">
-                <p><i>estimated CO2 emissions from shipping.</i></p>
-                <p><i>equivalent to emissions produced by <span id="funfact-id"></span>!</i></p>
-            </div>
-            <div>
-                <a href="./about-co2.html" target="_blank">Learn More</a>
-                <a style="float: right" href="../options/options.html" target="_blank">Not the right units? Adjust settings</a>
-            </div>
+        <ul class="maintab-left-list">
+          <li>+ Uses eco-friendly materials</li>
+          <li>+ Visits suppliers regularly</li>
+          <li>+ Traces supply chain</li>
+          <li>+ Workers paid a living wage</li>
+          <li>+ No animal products</li>
+          <li>- Not Vegan</li>
+          <li>- No Code of Conduct</li>
+        </ul>
+      </div>
+      <div class="maintab-right">
+        <div class="co2-units-display" id="co2-units-display-id"></div>
+        <div class="co2-facts" id="co2-facts-id">
+          <p><i>estimated CO2 emissions from shipping.</i></p>
+          <p>
+            <i><span id="funfact-id"></span></i>
+          </p>
         </div>
+        <div>
+          <div style="padding-top: 40px; float: right" id="footer">
+            <a href="./about-co2.html" target="_blank">Learn More</a>
+            <a href="../options/options.html" target="_blank"
+              >Not the right units? Adjust settings</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="tab">
-        <button class="tab-active"><img style="height: 18px" src="../icons/graph-icon.png" alt="graphtab"></button>
-        <a href="charities.html"><button class="tab-inactive"><img style="height: 18px" src="../icons/donate-icon.png" alt="donatetab"></button></a>
+      <button class="tab-active">
+        <img
+          style="height: 18px"
+          src="../icons/graph-icon.png"
+          alt="graphtab"
+        />
+      </button>
+      <a href="charities.html"
+        ><button class="tab-inactive">
+          <img
+            style="height: 18px"
+            src="../icons/donate-icon.png"
+            alt="donatetab"
+          /></button
+      ></a>
     </div>
-</body>
-
+  </body>
 </html>

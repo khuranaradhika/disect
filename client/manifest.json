@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "js": ["scripts/content-script.js"],
-      "matches": ["https://nike.com/*"]
+      "matches": ["<all_urls>"]
     }
   ],
   "background": {
