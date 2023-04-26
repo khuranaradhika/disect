@@ -1,7 +1,25 @@
 # Di$ect
-How to use this chrome extension on your browser. 
-
-
+## Di$ect Installation Instructions
+### Initial Steps
+1. Visit our GitHub at https://github.com/khuranaradhika/disect
+2. Click the (<> Code) button. A pop-up should appear, which has several options. Press the Download ZIP option.
+3. Once downloaded, open your device’s file explorer and unzip the file. Instructions are provided below for each of Windows, MacOS, and Linux Ubuntu.
+			a. **Windows:** Open File Explorer and navigate to the Downloads folder. Locate the “disect-main.zip” and double-click it. This will expand the zip file into a folder.
+			b. **MacOS:** Open Finder and navigate to the Downloads folder. Locate the “disect-main.zip” and double-click it.
+			c. **Linux Ubuntu:** Open Finder and navigate to the Downloads folder. Locate the “disect-main.zip” and double-click it.
+### Chrome Extension Installation
+1. Now that our application’s contents are available on your device, open an instance of Chrome and type “`chrome://extensions`” into the address bar.
+2. In the top right corner of this page, turn on Developer Mode by clicking the radio button in the top right corner of the page.
+3. Near the top left corner of the page, click the "Load Unpacked" button. This will open up your device’s local file explorer. Navigate to the “disect” folder (which should still be in Downloads if you have not moved it) and double-click the client folder. The Di$ect Chrome extension is now installed on your Chrome browser.
+### Express Server Installation
+1. In order to install our server, you’ll first need to download Node.js and its package manager npm. Visit the Node installation site and download version 10.24.1 with the .pkg file available [here](https://nodejs.org/download/release/v10.24.1/).
+2. Open your device’s file explorer, navigate to Downloads, and double-click the downloaded .pkg file. This will install Node.js version 10.24.1 and npm version 6.14.12 on your device. The following describes the steps for the GUI that appears from the .pkg file.
+	- Click “Continue” for the first page that appears (Introduction).
+	- Click “Continue” for the second page (License).
+		- Press “Agree” to the terms of service.
+	- Let the program determine where to install Node. Hence, click “Install” for the next page (Installation Type).
+		- Provide any authentication for your device if prompted.
+	- Node.js and npm are now installed on your machine. Close the installation program.
 
 # Licensing
 [Open Supply Hub©](https://opensupplyhub.org/) listed under the [Creative Commons Sharealike 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/legalcode) found at the [Open Supply Hub API](https://github.com/opensupplyhub/api). No modifications were made to the existing data collected by [Open Supply Hub©](https://opensupplyhub.org/).
